@@ -5,12 +5,8 @@ var lowercase   = "abcdefghijklmnopqrstuvwxyz";
 var numbers     = "0123456789";
 var symbols     = "!@#$%^&*(){}[]=<>/,.";
 
-
-
-
-// Write password to the #password input
-function writePassword() {
-  var allowed = '';
+function generatePassword() {
+    var allowed = '';
   if (document.details.uppercase.checked) {
     allowed += uppercase;
   }
@@ -23,12 +19,22 @@ function writePassword() {
   if (document.details.symbols.checked) {
     allowed += symbols;
   }
+  var password = "";
   var password = generatePassword();
   var length   = parseInt(document.details.length.value);
   for(var i = 8; i< 128; i++) {
     var random = Math.floor(Math.random() * 128);
     password += allowed[random];
+  }
+  return password;
 
+}
+
+
+
+// Write password to the #password input
+function writePassword() {
+  
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
